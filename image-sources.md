@@ -62,3 +62,7 @@ Product photographs downloaded from retailer product listings. Original packagin
 - coke-zero: Coca Cola Coke Zero Can 33 cl
   Product page: https://www.supermart.ng/products/coca-cola-coke-zero-can-33-cl?_pos=10&_psq=Coca+Cola+Coke+Zero&_psid=e98d190f0&_ss=e
   Image: https://cdn.shopify.com/s/files/1/0773/4037/7385/files/sprnw1537_a84818d1-b7cd-4999-9d23-aec75295594d.jpg?v=1769880848
+
+## Illustrative sides and extras
+
+French fries, two sausages, cheese slices, and scrambled eggs: created with the built-in image tool as matching food photographs on transparent backgrounds. These illustrate the menu items.
