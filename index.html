@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta
       name="description"
       content="Dodovard — everything plantain. Explore our signature plantain creations, sides, sauces and drinks."
@@ -922,6 +922,40 @@
 @media(max-width:600px){.menu-grid {grid-template-columns:1fr}}
 </style>
 <style id="kitchen-photo-brightness">.hero-art .food-photo {filter:brightness(1.12)}</style>
+<style id="mobile-checkout-and-calendar">
+/* Bound fixed panels to the visible viewport, including Safari's toolbar/keyboard. */
+.cart-drawer {top:var(--visible-top,0px);height:100vh;height:100dvh;height:var(--visible-height,100dvh);max-height:var(--visible-height,100dvh);overflow:hidden}
+.cart-drawer-head,.cart-drawer-footer {flex:0 0 auto}
+.cart-drawer-head {padding-top:calc(20px + env(safe-area-inset-top,0px))}
+.cart-drawer-lines {flex:1 1 0%;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.cart-drawer-footer {padding:12px 22px calc(16px + env(safe-area-inset-bottom,0px))}
+.cart-drawer-footer .cart-total {margin:0;padding:10px 0 16px}
+.cart {display:flex;flex-direction:column;max-height:calc(var(--visible-height,100dvh) - 120px)}
+.cart>h3,.cart>.cart-total,.cart>.checkout,.cart>.notice {flex-shrink:0}
+#cartLines {min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch}
+#checkoutModal {top:var(--visible-top,0px);bottom:auto;height:100vh;height:100dvh;height:var(--visible-height,100dvh);overflow-y:auto;padding:16px}
+#checkoutModal .modal-box {min-height:0;max-height:calc(var(--visible-height,100dvh) - 32px);overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(24px + env(safe-area-inset-bottom,0px))}
+#checkoutModal input,#checkoutModal textarea {font-size:16px}
+.date-trigger {width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid #d4caba;background:#fff;border-radius:12px;padding:15px 16px;font:inherit;text-align:left;color:var(--ink);cursor:pointer}
+.date-trigger svg {flex-shrink:0;width:20px;height:20px}
+.date-error {display:block;color:#a02e22;font-size:13px;margin-top:8px}
+#deliveryCalendar {position:fixed;inset:0;margin:auto;width:min(380px,calc(100vw - 24px));max-width:calc(100vw - 24px);max-height:calc(var(--visible-height,100dvh) - 24px);overflow-y:auto;padding:16px;border:0;border-radius:22px;background:var(--paper);color:var(--ink)}
+#deliveryCalendar::backdrop {background:rgba(0,0,0,.6)}
+.calendar-top,.calendar-navigation {display:flex;align-items:center;justify-content:space-between;gap:8px}
+.calendar-top h3 {font-size:20px}
+.calendar-top button,.calendar-navigation button {width:44px;height:44px;border:0;border-radius:50%;background:#eee9df;color:var(--ink);font-size:22px;cursor:pointer}
+.calendar-navigation {margin:12px 0}
+.calendar-navigation h4 {font-size:17px;text-align:center}
+.calendar-navigation button:disabled {opacity:.35;cursor:default}
+.calendar-weekdays,.calendar-days {display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;text-align:center}
+.calendar-weekdays {font-size:12px;color:var(--muted);margin-bottom:6px}
+.calendar-days button {min-width:0;min-height:44px;border:1px solid transparent;border-radius:10px;background:#f0ece2;color:var(--ink);font:inherit;cursor:pointer}
+.calendar-days button:disabled {color:#b5b0a6;background:transparent;text-decoration:line-through;cursor:not-allowed}
+.calendar-days button[aria-current="date"] {border-color:var(--green)}
+.calendar-days button[aria-pressed="true"] {background:var(--green);color:white}
+.calendar-note {font-size:12px;color:var(--muted);margin-top:14px}
+@media(max-width:900px){.cart {position:static;max-height:none}#cartLines {max-height:45vh;max-height:45dvh}}
+</style>
 </head>
   <body>
     <header class="nav" id="nav">
@@ -1241,7 +1275,11 @@
           <label for="customerPhone">Phone</label><input id="customerPhone" placeholder="080..." />
           <label for="customerArea">Address</label
           ><input id="customerArea" placeholder="Full delivery address, including street, area and city" />
-          <label for="customerDay">Preferred delivery date</label><input id="customerDay" type="date" required aria-describedby="deliveryDateNote" /><small id="deliveryDateNote">Delivery is available Monday to Saturday.</small>
+          <label id="deliveryDateLabel" for="deliveryDateTrigger">Preferred delivery date</label>
+          <input id="customerDay" type="hidden" value="" />
+          <button id="deliveryDateTrigger" class="date-trigger" type="button" aria-haspopup="dialog" aria-controls="deliveryCalendar" aria-labelledby="deliveryDateLabel deliveryDateText" aria-describedby="deliveryDateNote deliveryDateError" onclick="openDeliveryCalendar()"><span id="deliveryDateText">Select delivery date</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 2v6M17 2v6M3 11h18"/></svg></button>
+          <small id="deliveryDateNote">Delivery is available Monday to Saturday. Past dates cannot be selected.</small>
+          <span id="deliveryDateError" class="date-error" role="alert"></span>
           <label for="paymentReference">Sender’s name</label
           ><input
             id="paymentReference"
@@ -1253,7 +1291,7 @@
             placeholder="Anything we should know?"
           ></textarea>
           <button class="primary" onclick="submitOrder()">
-            Continue to WhatsApp
+            Proceed
           </button>
           <div class="form-note">
             WhatsApp will open with your order details. Tap Send in WhatsApp to send your request to Dodovard for confirmation.
@@ -1261,6 +1299,14 @@
         </div>
       </div>
     </div>
+
+    <dialog id="deliveryCalendar" aria-labelledby="deliveryCalendarTitle" aria-describedby="calendarNote">
+      <div class="calendar-top"><h3 id="deliveryCalendarTitle">Choose delivery date</h3><button type="button" aria-label="Close delivery calendar" onclick="document.getElementById('deliveryCalendar').close()">×</button></div>
+      <div class="calendar-navigation"><button type="button" id="previousDeliveryMonth" aria-label="Previous month" onclick="changeDeliveryMonth(-1)">←</button><h4 id="deliveryMonthLabel" aria-live="polite"></h4><button type="button" aria-label="Next month" onclick="changeDeliveryMonth(1)">→</button></div>
+      <div class="calendar-weekdays" aria-hidden="true"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div>
+      <div id="deliveryCalendarDays" class="calendar-days" role="group" aria-labelledby="deliveryMonthLabel"></div>
+      <p id="calendarNote" class="calendar-note">Choose today or a future date, Monday to Saturday.</p>
+    </dialog>
 
     <dialog id="itemOptions" aria-labelledby="optionTitle">
       <button class="option-close" type="button" onclick="document.getElementById('itemOptions').close()" aria-label="Close item options">×</button>
@@ -1567,6 +1613,7 @@
       }
 
       function openCart() {
+        syncVisibleViewport();
         document.getElementById("cartDrawer").classList.add("show");
         document.getElementById("cartBackdrop").classList.add("show");
         document.body.classList.add("cart-open");
@@ -1590,17 +1637,88 @@
       function scrollToOrder() {
         document.getElementById("order").scrollIntoView({ behavior: "smooth" });
       }
-      function localToday() {
-        const now=new Date();
-        return `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+      function syncVisibleViewport() {
+        const viewport=window.visualViewport;
+        document.documentElement.style.setProperty('--visible-height',`${viewport?viewport.height:window.innerHeight}px`);
+        document.documentElement.style.setProperty('--visible-top',`${viewport?viewport.offsetTop:0}px`);
       }
+      window.addEventListener('resize',syncVisibleViewport);
+      if(window.visualViewport) {
+        window.visualViewport.addEventListener('resize',syncVisibleViewport);
+        window.visualViewport.addEventListener('scroll',syncVisibleViewport);
+      }
+      syncVisibleViewport();
+      function dateKey(date) {
+        return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
+      }
+      function localToday() {return dateKey(new Date());}
+      function allowedDeliveryDate(value) {
+        if(!/^\d{4}-\d{2}-\d{2}$/.test(value) || value<localToday()) return false;
+        const date=new Date(value+'T12:00:00');
+        return !Number.isNaN(date.getTime()) && dateKey(date)===value && date.getDay()!==0;
+      }
+      function deliveryDateLabel(value) {
+        return new Date(value+'T12:00:00').toLocaleDateString('en-NG',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+      }
+      let deliveryMonth=new Date();
+      function refreshDeliveryDate() {
+        const input=document.getElementById('customerDay');
+        if(input.value && !allowedDeliveryDate(input.value)) input.value='';
+        document.getElementById('deliveryDateText').textContent=input.value?deliveryDateLabel(input.value):'Select delivery date';
+      }
+      function renderDeliveryCalendar() {
+        const year=deliveryMonth.getFullYear(),month=deliveryMonth.getMonth();
+        const today=new Date(localToday()+'T12:00:00');
+        document.getElementById('deliveryMonthLabel').textContent=deliveryMonth.toLocaleDateString('en-NG',{month:'long',year:'numeric'});
+        document.getElementById('previousDeliveryMonth').disabled=year<today.getFullYear() || (year===today.getFullYear() && month<=today.getMonth());
+        const offset=new Date(year,month,1).getDay();
+        const count=new Date(year,month+1,0).getDate();
+        const selected=document.getElementById('customerDay').value;
+        let days=Array.from({length:offset},()=>'<span aria-hidden="true"></span>').join('');
+        for(let day=1;day<=count;day++) {
+          const value=dateKey(new Date(year,month,day,12));
+          days+=`<button type="button" data-date="${value}" aria-label="${deliveryDateLabel(value)}" aria-pressed="${value===selected}" ${value===localToday()?'aria-current="date"':''} ${allowedDeliveryDate(value)?'':'disabled'} onclick="selectDeliveryDate('${value}')">${day}</button>`;
+        }
+        document.getElementById('deliveryCalendarDays').innerHTML=days;
+      }
+      function openDeliveryCalendar() {
+        refreshDeliveryDate();
+        const selected=document.getElementById('customerDay').value||localToday();
+        const date=new Date(selected+'T12:00:00');
+        deliveryMonth=new Date(date.getFullYear(),date.getMonth(),1,12);
+        renderDeliveryCalendar();
+        document.getElementById('deliveryCalendar').showModal();
+      }
+      function changeDeliveryMonth(delta) {
+        const next=new Date(deliveryMonth.getFullYear(),deliveryMonth.getMonth()+delta,1,12);
+        const today=new Date();
+        if(next<new Date(today.getFullYear(),today.getMonth(),1,12)) return;
+        deliveryMonth=next;renderDeliveryCalendar();
+      }
+      function selectDeliveryDate(value) {
+        if(!allowedDeliveryDate(value)) {renderDeliveryCalendar();return;}
+        document.getElementById('customerDay').value=value;
+        document.getElementById('deliveryDateError').textContent='';
+        document.getElementById('deliveryDateTrigger').removeAttribute('aria-invalid');
+        refreshDeliveryDate();
+        document.getElementById('deliveryCalendar').close();
+        document.getElementById('deliveryDateTrigger').focus();
+      }
+      window.addEventListener('pageshow',()=>{syncVisibleViewport();refreshDeliveryDate();});
+      document.addEventListener('visibilitychange',()=>{
+        if(!document.hidden) {
+          refreshDeliveryDate();
+          if(document.getElementById('deliveryCalendar').open) renderDeliveryCalendar();
+        }
+      });
       function openCheckout() {
         if (!cart.length) {
           alert("Please add at least one item to your order.");
           return;
         }
         const total = cart.reduce((s, x) => s + x.p * x.q, 0);
-        document.getElementById("customerDay").min=localToday();
+        syncVisibleViewport();
+        refreshDeliveryDate();
         document.getElementById("checkoutTotal").textContent = naira(total);
         document.getElementById("checkoutModal").classList.add("show");
       }
@@ -1613,20 +1731,24 @@
         const area=document.getElementById('customerArea').value.trim();
         const sender=document.getElementById('paymentReference').value.trim();
         const dateInput=document.getElementById('customerDay');
-        dateInput.min=localToday();
         if(!name || !phone || !area || !sender) {
           alert('Please enter your name, phone number, address and sender’s name.');return;
         }
-        if(!dateInput.reportValidity()) return;
+        if(!allowedDeliveryDate(dateInput.value)) {
+          dateInput.value='';refreshDeliveryDate();
+          document.getElementById('deliveryDateError').textContent='Please choose today or a future delivery date, Monday to Saturday.';
+          document.getElementById('deliveryDateTrigger').setAttribute('aria-invalid','true');
+          document.getElementById('deliveryDateTrigger').focus();return;
+        }
         if(!cart.length) {alert('Please add at least one item to your order.');return;}
         const selectedDate=new Date(dateInput.value+'T12:00:00');
-        if(selectedDate.getDay()===0) {alert('Please choose a delivery date from Monday to Saturday.');dateInput.focus();return;}
         const deliveryDate=selectedDate.toLocaleDateString('en-NG',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
         const notes=document.getElementById('customerNotes').value.trim();
         const total=cart.reduce((sum,item)=>sum+item.p*item.q,0);
         const orderLines=cart.map(item=>`${item.q} x ${item.n} — ${naira(item.p*item.q)}`).join('\n');
         const message=`Hello Dodovard! I would like to place an order.\n\nName: ${name}\nPhone: ${phone}\nAddress: ${area}\nPreferred delivery date: ${deliveryDate}\n\nORDER ITEMS\n${orderLines}\n\nTotal: ${naira(total)}\nSender’s name: ${sender}\nNotes: ${notes || 'None'}`;
-        window.open(`https://wa.me/2347026039763?text=${encodeURIComponent(message)}`,'_blank','noopener,noreferrer');
+        alert('Thank you for your purchase');
+        window.location.assign(`https://wa.me/2347026039763?text=${encodeURIComponent(message)}`);
       }
       window.addEventListener("scroll", () =>
         document
