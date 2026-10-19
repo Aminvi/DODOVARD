@@ -881,6 +881,7 @@
 .sauce-thumb img {position:static;display:block;width:100%;height:100%;max-width:100%;object-fit:contain;transform:none}.sauce-thumb img[src*="chis-mayo-cutout"] {transform:scale(1.12)}
 .sauce-choice .sauce-thumb {width:64px;height:64px;flex-basis:64px}.sauce-choice>span:not(.sauce-thumb) {margin-left:0;flex:1;white-space:normal;line-height:1.45}.sauce-choice small {margin:4px 0!important}
 .included-sauce-photos {display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}.included-sauce-photos>div {background:white;border:1px solid #e7e2d8;border-radius:14px;padding:10px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;font-size:12px;line-height:1.5}.included-sauce-photos small {margin:4px 0!important}
+.included-sauce-photos>div:only-child {grid-column:1/-1}
 #itemOptions .sauce-detail {object-fit:contain;object-position:center;height:220px;padding:10px;background:transparent}
 @media(max-width:700px){.order-card>.sauce-thumb {width:68px;height:68px;flex-basis:68px}.sauce-choice {gap:9px;font-size:13px}.sauce-choice .sauce-thumb {width:50px;height:50px;flex-basis:50px}}
 </style><style id="uniform-product-photos">
@@ -908,7 +909,7 @@
 #checkoutModal .modal-box {margin:auto;width:min(520px,100%);max-width:100%;max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);box-sizing:border-box;overscroll-behavior:contain}
 @media(max-width:480px){#itemOptions {padding:22px 18px;border-radius:22px}#checkoutModal .modal-box {padding:22px 18px;border-radius:22px}}
 </style><style id="extra-quantity-controls">
-.menu-grid {grid-template-columns:repeat(3,minmax(0,1fr))}
+.menu-grid {grid-template-columns:repeat(4,minmax(0,1fr))}
 .extra-choice {flex-wrap:wrap;gap:10px}
 #itemOptions .extra-choice .product-photo {width:54px;height:54px;flex:0 0 54px}
 .choice .extra-description {white-space:normal;flex:1;min-width:110px;margin-left:0}
@@ -1096,6 +1097,18 @@
                   >
                     +
                   </button>
+                </div>
+              </div>
+            </article>
+            <article class="card">
+              <div class="card-img">
+                <img class="food-photo" src="dodovard_food_images/menu/loaded-plantain-fries.png" alt="Loaded Plantain Fries" />
+              </div>
+              <div class="card-body">
+                <div class="card-title">Loaded Plantain Fries</div>
+                <div class="card-desc">Loaded plantain fries with our signature sauce included.</div>
+                <div class="price-row">
+                  <span class="price">₦15,500</span><button class="add" onclick="openLoadedFries()" aria-label="Choose Loaded Plantain Fries">+</button>
                 </div>
               </div>
             </article>
@@ -1350,8 +1363,10 @@
       startCarousel();
 
       function saucePhoto(n) {
-        if(n==='Extra Syrup (maple)') return 'dodovard_food_images/sauces/maple-syrup-v2.png';
-        if(n==='Extra Syrup (strawberry)') return 'dodovard_food_images/sauces/strawberry-syrup-v2.png';
+        if(n==='Extra Syrup (maple)') return 'dodovard_food_images/sauces/maple-syrup-cutout-v3.png';
+        if(n==='Extra Syrup (strawberry)') return 'dodovard_food_images/sauces/strawberry-syrup-cutout-v3.png';
+        if(n==='Ketchup') return 'dodovard_food_images/sauces/ketchup-cutout-v3.png';
+        if(n==='Loaded Fries Sauce') return 'dodovard_food_images/sauces/loaded-fries-sauce-cutout.png';
         if(n.startsWith('Stunna’s')) return 'dodovard_food_images/sauces/stunnas-bbq-cutout.png';
         if(n.startsWith('Chi’s Creamy')) return 'dodovard_food_images/sauces/chis-mayo-cutout.png';
         if(n.startsWith('FK’s')) return 'dodovard_food_images/sauces/fks-honey-bbq-cutout.png';
@@ -1369,12 +1384,13 @@
         return src ? `<span class="product-photo ${src.includes('/products/')?'packshot':''} ${extraClass}" style="${photoStyle(src)}"><img src="${src}" alt="${n}" loading="lazy" decoding="async"></span>` : '';
       }
       function sauceThumbnail(n) {return productThumbnail(n,'sauce-thumb');}
-      const productPhotos={"7UP Lemon Lime 60cl": "dodovard_food_images/products/7up.png", "Pepsi 60cl": "dodovard_food_images/products/pepsi.png", "Sprite 50cl": "dodovard_food_images/products/sprite.png", "Fanta 60cl": "dodovard_food_images/products/fanta.png", "Coca Cola 60cl": "dodovard_food_images/products/coca-cola.png", "Schweppes Mojito/Chapman 33cl": "dodovard_food_images/products/schweppes.png", "Zero Sugar Can Coke 33cl": "dodovard_food_images/products/coke-zero.png", "Malta Guinness Can 33cl": "dodovard_food_images/products/malta-guinness.png", "Maltina Bottle 33cl": "dodovard_food_images/products/maltina-cutout.png", "Amstel Malt 33cl": "dodovard_food_images/products/amstel-malt.png", "Predator Energy Drink 40cl": "dodovard_food_images/products/predator.png", "Fearless Energy Drink 50cl": "dodovard_food_images/products/fearless.png", "Desperados Flavoured Tequila Beer Can 44cl": "dodovard_food_images/products/desperados.png", "5 Alive Pulpy Orange 85cl": "dodovard_food_images/products/5-alive-orange.png", "Berry Blast 90cl": "dodovard_food_images/products/berry-blast-cutout.png", "Chi Exotic Pineapple & Coconut 315ml": "dodovard_food_images/products/chi-exotic-315ml.png", "Citrus Chivita Active 315ml": "dodovard_food_images/products/chivita-active-315ml.png", "Chi Exotic Pineapple & Coconut 1L": "dodovard_food_images/products/chi-exotic-1l.png", "Citrus Chivita Active 1L": "dodovard_food_images/products/chivita-active-1l.png", "Ketchup": "dodovard_food_images/products/ketchup.png"};
+      const productPhotos={"7UP Lemon Lime 60cl": "dodovard_food_images/products/7up.png", "Pepsi 60cl": "dodovard_food_images/products/pepsi.png", "Sprite 50cl": "dodovard_food_images/products/sprite.png", "Fanta 60cl": "dodovard_food_images/products/fanta.png", "Coca Cola 60cl": "dodovard_food_images/products/coca-cola.png", "Schweppes Mojito/Chapman 33cl": "dodovard_food_images/products/schweppes.png", "Zero Sugar Can Coke 33cl": "dodovard_food_images/products/coke-zero.png", "Malta Guinness Can 33cl": "dodovard_food_images/products/malta-guinness.png", "Maltina Bottle 33cl": "dodovard_food_images/products/maltina-cutout.png", "Amstel Malt 33cl": "dodovard_food_images/products/amstel-malt.png", "Predator Energy Drink 40cl": "dodovard_food_images/products/predator.png", "Fearless Energy Drink 50cl": "dodovard_food_images/products/fearless.png", "Desperados Flavoured Tequila Beer Can 44cl": "dodovard_food_images/products/desperados.png", "5 Alive Pulpy Orange 85cl": "dodovard_food_images/products/5-alive-orange.png", "Berry Blast 90cl": "dodovard_food_images/products/berry-blast-cutout.png", "Chi Exotic Pineapple & Coconut 315ml": "dodovard_food_images/products/chi-exotic-315ml.png", "Citrus Chivita Active 315ml": "dodovard_food_images/products/chivita-active-315ml.png", "Chi Exotic Pineapple & Coconut 1L": "dodovard_food_images/products/chi-exotic-1l.png", "Citrus Chivita Active 1L": "dodovard_food_images/products/chivita-active-1l.png"};
       function photoFor(n) {
         if(/^(French|Regular|Large) Fries/.test(n)) return 'dodovard_food_images/menu/french-fries.png';
         if(n.startsWith('Sausage')) return 'dodovard_food_images/menu/sausage.png';
         if(n.startsWith('Extra Cheese')) return 'dodovard_food_images/menu/extra-cheese.png';
         if(n.startsWith('Scrambled Eggs')) return 'dodovard_food_images/menu/scrambled-eggs.png';
+        if(saucePhoto(n)) return saucePhoto(n);
         if(productPhotos[n]) return productPhotos[n];
         if(n.startsWith('Loaded Plantain Fries')) return 'dodovard_food_images/menu/loaded-plantain-fries.png';
         if(n.startsWith('Oreos Plantain Pancakes')) return 'dodovard_food_images/menu/oreos-pancakes-cutout.png';
@@ -1383,7 +1399,6 @@
         if(n.startsWith('Chicken Stuffed Plantain Boat')) return 'dodovard_food_images/menu/chicken-boat-no-sauce.png';
         if(n.startsWith('Regular Smash Plantain Burger')) return 'dodovard_food_images/menu/regular-burger-cutout.png';
         if(n.startsWith('Double Decker Smash Plantain Burger')) return 'dodovard_food_images/menu/double-decker-burger-cutout.png';
-        if(saucePhoto(n)) return saucePhoto(n);
         if(n.includes('Boat')) return 'dodovard_food_images/stuffed-plantain-boats.png';
         if(n.includes('Burger')) return 'dodovard_food_images/8-removed-bg.png';
         if(n.includes('Pancakes')) return 'dodovard_food_images/7-removed-bg.png';
@@ -1419,9 +1434,10 @@
         {"n": "FK’s Honey BBQ Sauce (sweet & tangy)", "p": 900, "c": "sauces"},
         {"n": "Ese’s Pepper Sauce", "p": 1300, "c": "sauces"},
         {"n": "Stunna’s BBQ Glazing Sauce (sweet & spicy)", "p": 900, "c": "sauces"},
-        {"n": "Extra Syrup (maple)", "p": 0, "c": "sauces"},
+        {"n": "Extra Syrup (maple)", "p": 900, "c": "sauces"},
 
-        {"n": "Extra Syrup (strawberry)", "p": 0, "c": "sauces"},
+        {"n": "Extra Syrup (strawberry)", "p": 900, "c": "sauces"},
+        {"n": "Loaded Fries Sauce", "p": 1000, "c": "sauces"},
 
         {"n": "Ketchup", "p": 800, "c": "sauces"},
         { n: "7UP Lemon Lime 60cl", p: 450, c: "drinks" },
@@ -1488,6 +1504,7 @@
         document.getElementById('mealVariantCards').innerHTML=variants.map((x,i)=>`<label class="meal-variant-card">${productThumbnail(x.n)}<span><strong>${x.n}</strong><b>${naira(x.p)}</b></span><input type="radio" name="mealVariant" value="${items.indexOf(x)}" ${i===0?'checked':''} onchange="chooseMealVariant(this.value)"></label>`).join('');
       }
       function openPancakes() {openGroup('pancakes');}
+      function openLoadedFries() {openOptions(items.find(x=>x.c==='loaded'));}
       function chooseMealVariant(value) {
         document.getElementById('pancakeVariant').value=value;selectPancakeVariant();
       }
@@ -1500,6 +1517,7 @@
       }
       function freeSauces(meal) {
         if(meal.c==='pancakes') return items.filter(x=>x.n.startsWith('Extra Syrup'));
+        if(meal.c==='loaded') return items.filter(x=>x.n==='Loaded Fries Sauce');
         if(meal.c==='boats') return items.filter(x=>x.c==='sauces' && (x.n.startsWith('FK’s') || x.n.startsWith('Stunna’s')));
         if(meal.c==='sides' && /fries/i.test(meal.n)) return items.filter(x=>x.n==='Ketchup');
         return [];
@@ -1510,7 +1528,7 @@
         const free=freeSauces(selectedMeal);section.hidden=!free.length;
         const pancakes=selectedMeal.c==='pancakes';
         document.getElementById('includedSauceTitle').textContent=pancakes?'Included syrup':'Included dipping sauce';
-        document.getElementById('includedSauceNote').textContent=pancakes?'Choose a syrup per portion · both syrups are free (₦0). Extra syrup portions below are also free.':'Choose one per portion · ₦0. Additional sauce portions are charged below.';
+        document.getElementById('includedSauceNote').textContent=pancakes?'Choose one syrup per portion · ₦0. Extra syrup portions below are ₦900 each.':selectedMeal.c==='loaded'?'Choose Loaded Fries Sauce per portion · ₦0. Other sauces below are charged at their listed price.':'Choose one per portion · ₦0. Additional sauce portions are charged below.';
         document.getElementById('includedSaucePhotos').innerHTML=free.map(x=>`<div>${sauceThumbnail(x.n)}<span>${x.n}<small>Included · ₦0</small></span></div>`).join('');
         const box=document.getElementById('sauceChoices');
         if(!free.length) {box.innerHTML='';return;}
@@ -1542,7 +1560,7 @@
         document.getElementById('sauceChoices').innerHTML='';
         document.getElementById('extraFoodSection').hidden=['sauces','extras'].includes(meal.c);
         document.getElementById('extraFoodChoices').innerHTML=['sauces','extras'].includes(meal.c)?'':items.filter(x=>x.c==='extras').map(extraChoice).join('');
-        document.getElementById('extraSauceChoices').innerHTML=(meal.c==='sauces'?[]:items.filter(x=>x.c==='sauces')).map(extraChoice).join('');
+        document.getElementById('extraSauceChoices').innerHTML=(meal.c==='sauces'?[]:items.filter(x=>x.c==='sauces' && !(meal.c==='loaded' && x.n==='Loaded Fries Sauce'))).map(extraChoice).join('');
         document.getElementById('eggOrSausage').value='egg';syncEggOptions();syncFreeSauces();
       }
       function openOptions(meal) {
@@ -1786,7 +1804,8 @@
       const featuredMeals=[
         {name:'Chicken Stuffed Plantain Boat',action:"openGroup('boats')"},
         {name:'Regular Plantain Pancakes — 3 pieces + syrup',action:'openPancakes()'},
-        {name:'Regular Smash Plantain Burger',action:"openGroup('burgers')"}
+        {name:'Regular Smash Plantain Burger',action:"openGroup('burgers')"},
+        {name:'Loaded Plantain Fries',action:'openLoadedFries()'}
       ];
       document.querySelectorAll('.menu-grid .card').forEach((card,index)=>{
         const meal=featuredMeals[index];
