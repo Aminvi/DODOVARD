@@ -1,0 +1,34 @@
+/* Ordering additions inherit Dodovard's existing palette and type. */
+[hidden]{display:none!important}
+#sideFoodSection{margin-top:18px}
+.fulfilment{border:0;padding:0;margin:14px 0}
+.fulfilment legend{font-weight:800;font-size:16px;margin-bottom:10px}
+.fulfilment-choices{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form .fulfilment-choices label{margin:0;display:flex;gap:10px;align-items:center;padding:14px;border:1px solid #c8bfae;border-radius:14px;cursor:pointer;background:#fff}
+.form .fulfilment-choices label:has(input:checked){border:2px solid #151515;background:#fff1c4;padding:13px}
+.form .fulfilment-choices input,.form .hard-to-reach input{width:18px;flex:0 0 18px;height:18px;margin:0;accent-color:#111}
+.fulfilment-choices span{display:block;font-weight:800}
+.fulfilment-choices small{display:block;font-size:11px;font-weight:400}
+#deliveryFields>label{display:block;margin-top:14px}
+#deliveryFields>input,#deliveryFields>select{box-sizing:border-box;width:100%;margin-top:6px}
+#areaSearch{margin-bottom:6px}
+.form .hard-to-reach{display:flex!important;align-items:center;gap:8px;font-size:12px}
+.delivery-rate,.pickup-info{padding:14px;background:#fff1c4;border:1px solid #e2c569;border-radius:12px;font-size:13px;margin:12px 0;line-height:1.5}
+.checkout-breakdown{font-size:12px;margin:10px 0;line-height:1.5}
+.map-search{border:1px solid #222;border-radius:999px;background:transparent;padding:10px 16px;font:inherit;font-size:12px;font-weight:700;cursor:pointer;margin:5px 0}
+.map-search:disabled{opacity:.6;cursor:wait}
+#deliveryMap{display:block;width:100%;height:180px;border:1px solid #ccc;border-radius:14px;margin:10px 0}
+.map-status{font-size:12px;line-height:1.5;margin-top:6px}
+.map-results{display:grid;gap:6px;margin-top:8px}
+.map-results button{text-align:left;border:1px solid #ddd;background:white;padding:12px;border-radius:10px;cursor:pointer;font:inherit;font-size:12px}
+.map-results button:hover,.map-results button:focus-visible{background:#fff1c4}
+.order-status{font-size:13px;line-height:1.5;margin:12px 0}
+.whatsapp-order{display:block;text-align:center;text-decoration:none;margin-bottom:10px;background:#161616!important;color:#fff!important}
+#submitOrderButton:disabled{opacity:.6;cursor:wait}
+.delivery-rates{margin-top:20px}
+.rate-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}
+.rate-cards details{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fff}
+.rate-cards summary{display:flex;justify-content:space-between;gap:12px;cursor:pointer;font-size:14px}
+.rate-cards p{margin-top:12px;line-height:1.7}
+.form small{line-height:1.5}
+@media(max-width:600px){.rate-cards{grid-template-columns:1fr}.fulfilment-choices{gap:8px}.form .fulfilment-choices label{padding:12px}.form .fulfilment-choices label:has(input:checked){padding:11px}}
