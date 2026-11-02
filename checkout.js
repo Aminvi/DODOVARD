@@ -24,7 +24,7 @@ function setFulfilment() {
   checkoutState.mode=document.querySelector('input[name="fulfilment"]:checked').value;
   const pickup=checkoutState.mode==='pickup';
   byId('deliveryFields').hidden=pickup;byId('pickupInfo').hidden=!pickup;
-  byId('pickupInfo').textContent=Dodovard.pickupAddress;
+  byId('pickupInfo').textContent=Dodovard.pickupNote;
   byId('deliveryDateLabel').textContent=pickup?'Preferred pickup date':'Preferred delivery date';
   clearOrderFeedback();updateCheckoutTotal();
 }
@@ -116,7 +116,7 @@ async function submitOrder() {
   const subtotal=cart.reduce((sum,item)=>sum+item.p*item.q,0),total=delivery.quote?null:subtotal+delivery.rate;
   const notes=byId('customerNotes').value.trim();
   const orderLines=cart.map(item=>`${item.q} × ${item.n} — ${naira(item.p*item.q)}`).join('\n');
-  const order={Name:name,Phone:phone,Fulfilment:pickup?'Pickup':'Delivery',Address:pickup?Dodovard.pickupAddress:address,Area:delivery.area,Zone:delivery.id,Date:deliveryDateLabel(date),'Order items':orderLines,Subtotal:naira(subtotal),'Delivery fee':delivery.quote?'Custom quote required':naira(delivery.rate),Total:delivery.quote?'Pending delivery quote — do not pay yet':naira(total),'Sender name':sender||'Awaiting delivery quote',Notes:notes||'None'};
+  const order={Name:name,Phone:phone,Fulfilment:pickup?'Pickup':'Delivery',Address:pickup?Dodovard.pickupNote:address,Area:delivery.area,Zone:delivery.id,Date:deliveryDateLabel(date),'Order items':orderLines,Subtotal:naira(subtotal),'Delivery fee':delivery.quote?'Custom quote required':naira(delivery.rate),Total:delivery.quote?'Pending delivery quote — do not pay yet':naira(total),'Sender name':sender||'Awaiting delivery quote',Notes:notes||'None'};
   if(!pickup&&checkoutState.mapLocation) order['Map location']=checkoutState.mapLocation.label+' https://www.openstreetmap.org/?mlat='+checkoutState.mapLocation.lat+'&mlon='+checkoutState.mapLocation.lon;
   const key=JSON.stringify(order);
   if(checkoutState.draftKey!==key) {checkoutState.draftKey=key;checkoutState.draftId='DODO-'+Date.now().toString(36).toUpperCase()+'-'+crypto.randomUUID().slice(0,8).toUpperCase();}

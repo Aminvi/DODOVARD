@@ -13,7 +13,7 @@ This version starts from the ZIP supplied on 31 October 2026.
 - The menu starts with Plantain boats, Burgers, Pancakes, Loaded fries and Sauces. Sides, Fries and Extras appear next, immediately before Drinks. Meal sides, extras and syrups have plus/minus quantity controls.
 - Maple syrup and Strawberry syrup are both free with pancakes, including quantities selected in the Syrups section. Purchased separately, they retain the supplied menu price of ₦900.
 - Pepper choices: Regular pepper, No added pepper, Extra pepper (+₦1,250 per portion). Pancakes show these under Egg seasoning when eggs are included or added.
-- Pickup: 13 Lidipe Street, Agege, Lagos. Pickup has no delivery fee.
+- Pickup details are shared after order confirmation. Pickup has no delivery fee; the address is not published on the website or included in order-request messages.
 - Zone labels: L0, L1, L2, L3, L4, L5. The supplied area lists and rates remain unchanged; L5 requires a custom quote before payment.
 - Address recognition, Photon address search and the OpenStreetMap preview are retained.
 - Tuesday and Thursday accept same-day fulfilment only, from 1pm until 5:30pm, Lagos time. These dates cannot be pre-booked. Other days retain the ZIP’s 4:28pm same-day cutoff, 6pm previous-evening preorder cutoff and Sunday closure.

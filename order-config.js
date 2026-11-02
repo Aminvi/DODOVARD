@@ -36,7 +36,7 @@
   }
   const api={zones,normalize,matchArea,clock,allowedDate,extraPepperPrice:1250,
     emailRecipient:'dodovardng@gmail.com',
-    pickupAddress:'13 Lidipe Street, Agege, Lagos',
+    pickupNote:'Pickup details will be shared after your order is confirmed.',
     geocoderUrl:'https://photon.komoot.io/api/',
     scheduleNote:'Tuesday & Thursday: same-day orders only, 1 p.m.–5:30 p.m. Lagos time. No pre-orders for these days. Other operating days: same-day orders close at 4:28 p.m.; pre-orders close at 6 p.m. the evening before. Closed Sundays.'};
   root.Dodovard=api;
