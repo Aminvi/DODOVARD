@@ -44,3 +44,9 @@ Map attribution: https://www.openstreetmap.org/copyright
 ## Verification
 
 177 automated checks cover areas, rates, date/time cutoffs, burger prices, pickup, email payloads, automatic WhatsApp navigation, duplicate-click protection and network failure. Browser checks include an iPhone 14 Pro-sized viewport, free syrups, sides, extra pepper, pickup totals, map results, unavailable Tuesday/Thursday pre-orders and a reachable Proceed button.
+
+## Phone home-screen icons
+
+Both pages declare the Dodovard Apple touch icon, favicons and web app manifest. Icons use the existing logo on opaque black; the Android maskable variant keeps the artwork inside the safe area. Relative paths support hosting at the site root or under a subdirectory. The home-screen shortcut opens in the browser, preserving the existing checkout and WhatsApp flow.
+
+After the updated site is live, remove any old blank shortcut, reopen the website in the phone browser and add it to the Home Screen again.
