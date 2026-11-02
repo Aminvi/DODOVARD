@@ -30,7 +30,7 @@
     if(Number.isNaN(date.getTime())||date.toISOString().slice(0,10)!==value||date.getUTCDay()===0||value<c.today) return false;
     const restricted=[2,4].includes(date.getUTCDay());
     if(restricted) return value===c.today && c.minutes>=13*60 && c.minutes<17*60+30;
-    if(value===c.today) return c.minutes<16*60+28;
+    if(value===c.today) return c.minutes<16*60+30;
     const tomorrow=new Date(c.today+'T12:00:00Z');tomorrow.setUTCDate(tomorrow.getUTCDate()+1);
     return value!==tomorrow.toISOString().slice(0,10)||c.minutes<18*60;
   }
@@ -38,7 +38,7 @@
     emailRecipient:'dodovardng@gmail.com',
     pickupNote:'Pickup details will be shared after your order is confirmed.',
     geocoderUrl:'https://photon.komoot.io/api/',
-    scheduleNote:'Tuesday & Thursday: same-day orders only, 1 p.m.–5:30 p.m. Lagos time. No pre-orders for these days. Other operating days: same-day orders close at 4:28 p.m.; pre-orders close at 6 p.m. the evening before. Closed Sundays.'};
+    scheduleNote:"Tuesday & Thursday: same-day orders only, 1 p.m.–5:30 p.m. WAT\nOther days: same-day orders close at 4:30 p.m. WAT\nPre-orders close at 6 p.m. the evening before.\nClosed Sundays."};
   root.Dodovard=api;
   if(typeof module!=='undefined') module.exports=api;
 })(typeof window==='undefined'?globalThis:window);

@@ -16,7 +16,7 @@ This version starts from the ZIP supplied on 31 October 2026.
 - Pickup details are shared after order confirmation. Pickup has no delivery fee; the address is not published on the website or included in order-request messages.
 - Zone labels: L0, L1, L2, L3, L4, L5. The supplied area lists and rates remain unchanged; L5 requires a custom quote before payment.
 - Address recognition, Photon address search and the OpenStreetMap preview are retained.
-- Tuesday and Thursday accept same-day fulfilment only, from 1pm until 5:30pm, Lagos time. These dates cannot be pre-booked. Other days retain the ZIP’s 4:28pm same-day cutoff, 6pm previous-evening preorder cutoff and Sunday closure.
+- Tuesday and Thursday: same-day orders only, 1 p.m.–5:30 p.m. WAT. Other days: same-day orders close at 4:30 p.m. WAT. Pre-orders close at 6 p.m. the evening before. Closed Sundays.
 - No About Us portrait, chicken skewers, chocolate syrup or Greek dressing. Ketchup remains last in the sauce list.
 - One Proceed button attempts the order email and opens WhatsApp automatically, with a thank-you message first. Customers must still tap Send in WhatsApp. No additional Continue to WhatsApp button appears on the website.
 

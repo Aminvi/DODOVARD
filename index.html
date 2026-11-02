@@ -1162,7 +1162,7 @@
           </div>
           <div class="delivery">
             <div class="info-card">
-              <h3>Pickup or delivery</h3><p><strong>Pickup:</strong> Details will be shared after your order is confirmed.</p><p><strong>Tuesday & Thursday</strong><br>Same-day orders only, from 1 p.m. to 5:30 p.m. No pre-orders for these days.</p><p style="margin-top:12px"><strong>Monday, Wednesday, Friday & Saturday</strong><br>Same-day orders close at 4:28 p.m. Pre-orders close at 6 p.m. the evening before. All times are Lagos time. Closed Sundays.</p>
+              <h3>Pickup or delivery</h3><p><strong>Pickup:</strong> Details will be shared after your order is confirmed.</p><p>Tuesday &amp; Thursday: same-day orders only, 1 p.m.–5:30 p.m. WAT<br>Other days: same-day orders close at 4:30 p.m. WAT<br>Pre-orders close at 6 p.m. the evening before.<br>Closed Sundays.</p>
             </div>
             <div class="info-card">
               <h3>A little note</h3>
@@ -1278,7 +1278,7 @@
           <label id="deliveryDateLabel" for="deliveryDateTrigger">Preferred pickup / delivery date</label>
           <input id="customerDay" type="hidden" value="" />
           <button id="deliveryDateTrigger" class="date-trigger" type="button" aria-haspopup="dialog" aria-controls="deliveryCalendar" aria-labelledby="deliveryDateLabel deliveryDateText" aria-describedby="deliveryDateNote deliveryDateError" onclick="openDeliveryCalendar()"><span id="deliveryDateText">Select delivery date</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 2v6M17 2v6M3 11h18"/></svg></button>
-          <small id="deliveryDateNote">Tuesday & Thursday: same-day only, 1 p.m.–5:30 p.m. Lagos time. Other days: same-day closes at 4:28 p.m.; pre-orders close at 6 p.m. the evening before. Closed Sundays.</small>
+          <small id="deliveryDateNote">Tuesday &amp; Thursday: same-day orders only, 1 p.m.–5:30 p.m. WAT<br>Other days: same-day orders close at 4:30 p.m. WAT<br>Pre-orders close at 6 p.m. the evening before.<br>Closed Sundays.</small>
           <span id="deliveryDateError" class="date-error" role="alert"></span>
           <label for="paymentReference">Sender’s name</label
           ><input
@@ -1304,7 +1304,7 @@
       <div class="calendar-navigation"><button type="button" id="previousDeliveryMonth" aria-label="Previous month" onclick="changeDeliveryMonth(-1)">←</button><h4 id="deliveryMonthLabel" aria-live="polite"></h4><button type="button" aria-label="Next month" onclick="changeDeliveryMonth(1)">→</button></div>
       <div class="calendar-weekdays" aria-hidden="true"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div>
       <div id="deliveryCalendarDays" class="calendar-days" role="group" aria-labelledby="deliveryMonthLabel"></div>
-      <p id="calendarNote" class="calendar-note">Tuesday & Thursday are available only on the day, from 1 p.m. to 5:30 p.m. Lagos time. No pre-orders for those days. Other days: same-day closes at 4:28 p.m.; next-day pre-orders close at 6 p.m. Closed Sundays.</p>
+      <p id="calendarNote" class="calendar-note">Tuesday &amp; Thursday: same-day orders only, 1 p.m.–5:30 p.m. WAT<br>Other days: same-day orders close at 4:30 p.m. WAT<br>Pre-orders close at 6 p.m. the evening before.<br>Closed Sundays.</p>
     </dialog>
 
     <dialog id="itemOptions" aria-labelledby="optionTitle">
@@ -1325,7 +1325,7 @@
         <button class="primary" id="optionAdd" type="submit">Add to order</button>
       </form>
     </dialog>
-    <script src="order-config.js?v=pickup-details-1"></script>
+    <script src="order-config.js?v=schedule-430-1"></script>
     <script>
       function saucePhoto(n) {
         if(n==='Maple syrup') return 'dodovard_food_images/sauces/maple-syrup-cutout-v3.png';
@@ -1582,7 +1582,7 @@
         }
         document.getElementById('itemOptions').close();
       }
-      const plantainOrderMessage='Add at least one plantain dish before checkout: a plantain boat, burger, pancakes or loaded plantain fries.';
+      const plantainOrderMessage='Add at least one plantain dish before checkout: a Stuffed Plantain Boat, a Smash Plantain Burger, Plantain Pancakes or Loaded Plantain Fries.';
       function hasPlantainDish() {
         return cart.some(item=>item.q>0 && ['boats','burgers','pancakes','loaded'].includes(item.c));
       }
@@ -1676,7 +1676,7 @@
         const input=document.getElementById('customerDay');
         if(input.value && !allowedDeliveryDate(input.value)) {
           input.value='';
-          document.getElementById('deliveryDateError').textContent='That date is no longer available. Please choose another date. Tuesday and Thursday accept same-day orders only, 1 p.m.–5:30 p.m. Lagos time.';
+          document.getElementById('deliveryDateError').textContent='That date is no longer available. Please choose another date. '+Dodovard.scheduleNote;
           document.getElementById('deliveryDateTrigger').setAttribute('aria-invalid','true');
         }
         document.getElementById('deliveryDateText').textContent=input.value?deliveryDateLabel(input.value):'Select delivery date';
