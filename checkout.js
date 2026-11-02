@@ -104,7 +104,7 @@ async function submitOrder() {
   const delivery=currentDelivery(),pickup=checkoutState.mode==='pickup',date=byId('customerDay').value;
   const status=byId('orderStatus');
   function invalid(message,id) {status.textContent=message;byId(id).focus();}
-  if(!cart.length) {invalid('Add at least one meal before placing your order.','submitOrderButton');return;}
+  if(!hasPlantainDish()) {invalid(plantainOrderMessage,'submitOrderButton');return;}
   if(!name) {invalid('Please enter your name.','customerName');return;}
   if(phone.replace(/\D/g,'').length<7) {invalid('Please enter a valid phone number.','customerPhone');return;}
   if(!pickup&&address.length<8) {invalid('Please enter your full delivery address, including house number, street and area.','customerArea');return;}

@@ -32,3 +32,8 @@
 .rate-cards p{margin-top:12px;line-height:1.7}
 .form small{line-height:1.5}
 @media(max-width:600px){.rate-cards{grid-template-columns:1fr}.fulfilment-choices{gap:8px}.form .fulfilment-choices label{padding:12px}.form .fulfilment-choices label:has(input:checked){padding:11px}}
+
+.checkout:disabled{opacity:.55;cursor:not-allowed}
+.cart .notice[role="status"],.cart-drawer .notice[role="status"]{font-size:13px;margin:0 0 12px;line-height:1.5}
+.cart .notice[role="status"]{color:#e7ad28}
+.cart-drawer .notice[role="status"]{color:#684a0a}

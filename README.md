@@ -20,6 +20,10 @@ This version starts from the ZIP supplied on 31 October 2026.
 - No About Us portrait, chicken skewers, chocolate syrup or Greek dressing. Ketchup remains last in the sauce list.
 - One Proceed button attempts the order email and opens WhatsApp automatically, with a thank-you message first. Customers must still tap Send in WhatsApp. No additional Continue to WhatsApp button appears on the website.
 
+## Plantain dish requirement
+
+Every order must include at least one plantain boat, burger, pancake dish or loaded plantain fries. Drinks, sides, regular fries, extras and sauces can be added, but cannot be checked out on their own. Both cart checkout buttons and final order submission enforce this rule.
+
 ## Email notifications
 
 Recipient: dodovardng@gmail.com. The website uses FormSubmit. There is no email password or secret API key in the website.

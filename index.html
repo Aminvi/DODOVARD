@@ -940,7 +940,7 @@
 .calendar-note {font-size:12px;color:var(--muted);margin-top:14px}
 @media(max-width:900px){.cart {position:static;max-height:none}#cartLines {max-height:45vh;max-height:45dvh}}
 </style>
-<link rel="stylesheet" href="ordering.css">
+<link rel="stylesheet" href="ordering.css?v=plantain-required-1">
   <style id="plain-introduction">
       .hero{background:#fff;padding:165px 0 85px;color:#111}
       .hero-grid{display:block;max-width:1160px}
@@ -1104,7 +1104,7 @@
               <div class="kicker">Build your order</div>
               <h2>What are we<br />sending you?</h2>
             </div>
-            <p>Add your favourites below. Your cart updates instantly.</p>
+            <p>Start with a plantain boat, burger, pancakes or loaded plantain fries, then add your favourites.</p>
           </div>
           <div class="order-layout">
             <div>
@@ -1134,7 +1134,8 @@
               <div class="cart-total">
                 <span>Total</span><span id="total">₦0</span>
               </div>
-              <button class="checkout" onclick="openCheckout()">
+              <p id="cartPlantainNotice" class="notice" role="status"></p>
+              <button class="checkout" onclick="openCheckout()" aria-describedby="cartPlantainNotice">
                 Continue to checkout
               </button>
               <div class="notice">Orders are confirmed after full payment.</div>
@@ -1222,7 +1223,8 @@
         <div class="cart-total">
           <span>Total</span><span id="drawerTotal">₦0</span>
         </div>
-        <button class="checkout" onclick="checkoutFromCart()">
+        <p id="drawerPlantainNotice" class="notice" role="status"></p>
+        <button class="checkout" onclick="checkoutFromCart()" aria-describedby="drawerPlantainNotice">
           Continue to checkout
         </button>
       </div>
@@ -1447,12 +1449,12 @@
       function addItem(n,p) {
         const meal=items.find(x=>x.n===n);
         if(!meal || meal.p===null) return;
-        if(meal.c==='drinks') putInCart(meal.n,meal.p,1);
+        if(meal.c==='drinks') putInCart(meal.n,meal.p,1,meal.c);
         else openOptions(meal);
       }
-      function putInCart(n,p,q) {
+      function putInCart(n,p,q,c) {
         const found=cart.find(x=>x.n===n && x.p===p);
-        if(found) found.q+=q; else cart.push({n,p,q});renderCart();
+        if(found) found.q+=q; else cart.push({n,p,q,c});renderCart();
       }
       function openGroup(category) {
         const variants=items.filter(x=>x.c===category);
@@ -1568,9 +1570,13 @@
         const price=selectedMeal.p+extras.reduce((a,x)=>a+x.item.p*x.q,0);
         for(let i=0;i<q;i++) {
           const included=freeSauces(selectedMeal).length?[free[i]?(selectedMeal.c==='pancakes'?'Included syrup: ':'Included sauce: ')+free[i].n+' (₦0)':(selectedMeal.c==='pancakes'?'No syrup (₦0)':'No dipping sauce (₦0)')]:[];
-          putInCart(selectedMeal.n+' — '+[...included,...extraText,...preferences].join('; '),price,1);
+          putInCart(selectedMeal.n+' — '+[...included,...extraText,...preferences].join('; '),price,1,selectedMeal.c);
         }
         document.getElementById('itemOptions').close();
+      }
+      const plantainOrderMessage='Add at least one plantain dish before checkout: a plantain boat, burger, pancakes or loaded plantain fries.';
+      function hasPlantainDish() {
+        return cart.some(item=>item.q>0 && ['boats','burgers','pancakes','loaded'].includes(item.c));
       }
       function removeItem(i) {cart.splice(i,1);renderCart();}
 
@@ -1605,6 +1611,11 @@
         document.getElementById("total").textContent = naira(total);
         document.getElementById("count").textContent = count;
         document.getElementById("drawerTotal").textContent = naira(total);
+        const eligible=hasPlantainDish();
+        document.querySelectorAll('.checkout').forEach(button=>{button.disabled=!eligible;});
+        ['cartPlantainNotice','drawerPlantainNotice'].forEach(id=>{
+          document.getElementById(id).textContent=eligible?'':plantainOrderMessage;
+        });
       }
 
       function openCart() {
@@ -1621,8 +1632,8 @@
       }
 
       function checkoutFromCart() {
-        if (!cart.length) {
-          alert("Please add at least one item to your order.");
+        if (!hasPlantainDish()) {
+          alert(plantainOrderMessage);
           return;
         }
         closeCart();
@@ -1719,8 +1730,8 @@
       syncDeliveryAvailability();
       setInterval(syncDeliveryAvailability,1000);
       function openCheckout() {
-        if (!cart.length) {
-          alert("Please add at least one item to your order.");
+        if (!hasPlantainDish()) {
+          alert(plantainOrderMessage);
           return;
         }
         const total = cart.reduce((s, x) => s + x.p * x.q, 0);
@@ -1750,6 +1761,6 @@
       renderItems();
       renderCart();
     </script>
-    <script src="checkout.js"></script>
+    <script src="checkout.js?v=plantain-required-1"></script>
   </body>
 </html>
