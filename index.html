@@ -1112,14 +1112,14 @@
               <input id="menuSearch" class="menu-search" type="search" placeholder="Search burgers, plantain, drinks…" oninput="renderItems()">
               <div class="tabs" aria-label="Menu categories">
                 <button class="tab active" aria-pressed="true" onclick="filterItems('all',this)">All</button>
-                <button class="tab" aria-pressed="false" onclick="filterItems('sides',this)">Sides</button>
-                <button class="tab" aria-pressed="false" onclick="filterItems('fries',this)">Fries</button>
-                <button class="tab" aria-pressed="false" onclick="filterItems('extras',this)">Extras</button>
                 <button class="tab" aria-pressed="false" onclick="filterItems('boats',this)">Plantain boats</button>
                 <button class="tab" aria-pressed="false" onclick="filterItems('burgers',this)">Burgers</button>
                 <button class="tab" aria-pressed="false" onclick="filterItems('pancakes',this)">Pancakes</button>
                 <button class="tab" aria-pressed="false" onclick="filterItems('loaded',this)">Loaded fries</button>
                 <button class="tab" aria-pressed="false" onclick="filterItems('sauces',this)">Sauces</button>
+                <button class="tab" aria-pressed="false" onclick="filterItems('sides',this)">Sides</button>
+                <button class="tab" aria-pressed="false" onclick="filterItems('fries',this)">Fries</button>
+                <button class="tab" aria-pressed="false" onclick="filterItems('extras',this)">Extras</button>
                 <button class="tab" aria-pressed="false" onclick="filterItems('drinks',this)">Drinks</button>
               </div>
               <div class="order-items" id="orderItems"></div>
@@ -1425,7 +1425,7 @@
       let cart = [];
       const naira = (n) => "₦" + n.toLocaleString("en-NG");
       let activeCategory = 'all';
-      const categories = {sides:'Sides',fries:'Fries',extras:'Extras',boats:'Plantain boats',burgers:'Burgers',pancakes:'Pancakes',loaded:'Loaded fries',sauces:'Sauces',drinks:'Drinks'};
+      const categories = {boats:'Plantain boats',burgers:'Burgers',pancakes:'Pancakes',loaded:'Loaded fries',sauces:'Sauces',sides:'Sides',fries:'Fries',extras:'Extras',drinks:'Drinks'};
       items.forEach(x => { if(x.c === 'mains') x.c = x.n.includes('Boat') ? 'boats' : x.n.includes('Burger') ? 'burgers' : x.n.includes('Pancakes') ? 'pancakes' : 'grills'; });
       function renderItems() {
         const query = document.getElementById('menuSearch').value.trim().toLowerCase();

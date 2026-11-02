@@ -10,7 +10,7 @@ This version starts from the ZIP supplied on 31 October 2026.
 - Regular Smash Plantain Burger: ₦7,500.
 - Smash Plantain Double Cheeseburger: ₦13,800.
 - Double Decker Smash Plantain Burger: ₦14,500.
-- Sides and Fries appear before Extras. Meal sides, extras and syrups have plus/minus quantity controls.
+- The menu starts with Plantain boats, Burgers, Pancakes, Loaded fries and Sauces. Sides, Fries and Extras appear next, immediately before Drinks. Meal sides, extras and syrups have plus/minus quantity controls.
 - Maple syrup and Strawberry syrup are both free with pancakes, including quantities selected in the Syrups section. Purchased separately, they retain the supplied menu price of ₦900.
 - Pepper choices: Regular pepper, No added pepper, Extra pepper (+₦1,250 per portion). Pancakes show these under Egg seasoning when eggs are included or added.
 - Pickup: 13 Lidipe Street, Agege, Lagos. Pickup has no delivery fee.
