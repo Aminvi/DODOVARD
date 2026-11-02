@@ -51,8 +51,9 @@ Product photographs downloaded from retailer product listings. Original packagin
   Product page: https://www.supermart.ng/products/heinz-tomato-ketchup-300-g?_pos=1&_psq=Heinz+Ketchup&_psid=5317299c9&_ss=e
   Image: https://cdn.shopify.com/s/files/1/0773/4037/7385/files/spmex2431.jpg?v=1756131812
 - maltina: Maltina Bottle (33cl)
-  Product page: https://www.citymarketng.com/products/maltina-bottle-33cl?_pos=1&_psq=Maltina&_psid=c750435e3&_ss=e
-  Image: https://cdn.shopify.com/s/files/1/0640/8411/5543/files/IMG_4119.jpg?v=1765476068
+  Source: user-supplied images-2.jpeg, 2 November 2026.
+  Current asset: dodovard_food_images/products/maltina-bottle-v2.png
+  Background removed with the built-in image editor; transparent PNG.
 - berry-blast: 5 Alive Berry Blast (78cl)
   Product page: https://www.citymarketng.com/products/5-alive-berry-blast-78cl?_pos=1&_psq=Berry+Blast&_psid=a6282792f&_ss=e
   Image: https://cdn.shopify.com/s/files/1/0640/8411/5543/files/IMG_4016.jpg?v=1764345162
