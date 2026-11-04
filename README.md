@@ -30,7 +30,7 @@ Recipient: dodovardng@gmail.com. Checkout posts to the same-site `/api/order-not
 
 The mail service fixes the recipient, validates order fields, limits submission rates, deduplicates order references and returns a provider message ID. Checkout reports success only with that receipt. If sending fails, customers receive a clear instruction to tap Send in WhatsApp; the site does not claim their purchase was completed.
 
-The FormSubmit connection was replaced after diagnostic submissions were denied by the provider. Production verification uses a clearly marked TEST ONLY request; inbox receipt still needs the mailbox owner's confirmation.
+The FormSubmit connection was replaced after diagnostic submissions were denied by the provider. Production verification on 4 November 2026 used clearly marked TEST ONLY requests through both the notification endpoint and the live checkout. The provider returned message receipts, and the mailbox owner confirmed the test notification arrived at dodovardng@gmail.com.
 
 ## Map search
 
