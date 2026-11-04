@@ -33,7 +33,7 @@ test('a failed email never shows a purchase success message and still provides W
   }
 });
 test('accepted requests give truthful request feedback and repeated clicks do not duplicate email',async()=>{
-  const app=setup({ok:true,json:async()=>({success:true})});
+  const app=setup({ok:true,json:async()=>({success:true,messageId:'test-message-id'})});
   await app.run();await app.run();
   assert.match(app.alerts[0],/order request was emailed/);
   assert.doesNotMatch(app.alerts[0],/purchase/);

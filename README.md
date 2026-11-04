@@ -26,13 +26,11 @@ Every order must include at least one plantain boat, burger, pancake dish or loa
 
 ## Email notifications
 
-Recipient: dodovardng@gmail.com. The website uses FormSubmit. There is no email password or secret API key in the website.
+Recipient: dodovardng@gmail.com. Checkout posts to the same-site `/api/order-notification` endpoint. It uses the owner's approved existing Resend connection through `https://www.abiryva.com/api/dodovard-order`; that service retains the private email credential. No email credential is included in this repository or sent to a customer's browser.
 
-After uploading to the final website address, make one clearly marked TEST ONLY request. Check dodovardng@gmail.com (including spam) for the FormSubmit activation email and activate the form if requested. Then confirm that a second test arrives before relying on live order notifications.
+The mail service fixes the recipient, validates order fields, limits submission rates, deduplicates order references and returns a provider message ID. Checkout reports success only with that receipt. If sending fails, customers receive a clear instruction to tap Send in WhatsApp; the site does not claim their purchase was completed.
 
-The browser handoff to WhatsApp was verified with a clearly labelled test request; the WhatsApp message was not sent and no real order or payment was made. Inbox delivery has not been verified. A direct automated endpoint test was blocked by the provider with HTTP 403. If the email request fails, Proceed still opens WhatsApp so the order can be sent directly.
-
-Documentation: https://formsubmit.co/documentation
+The FormSubmit connection was replaced after diagnostic submissions were denied by the provider. Production verification uses a clearly marked TEST ONLY request; inbox receipt still needs the mailbox owner's confirmation.
 
 ## Map search
 

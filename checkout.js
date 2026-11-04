@@ -1,4 +1,4 @@
-/* Checkout for the static website. Email is delivered by FormSubmit after recipient activation. */
+/* Checkout sends notifications through the website's server endpoint. */
 const checkoutState={mode:'delivery',busy:false,sequence:0,results:[],cache:new Map(),emailSent:new Set(),draftKey:'',draftId:'',mapLocation:null};
 const byId=id=>document.getElementById(id);
 const allDeliveryAreas=Dodovard.zones.flatMap(zone=>zone.areas.map(area=>({area,zone}))).sort((a,b)=>a.area.localeCompare(b.area));
@@ -128,9 +128,9 @@ async function submitOrder() {
   let notificationSent=checkoutState.emailSent.has(reference);
   try {
     if(!checkoutState.emailSent.has(reference)) {
-      const response=await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(Dodovard.emailRecipient)}`,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},signal:AbortSignal.timeout(15000),body:JSON.stringify({_subject:`Dodovard ${pickup?'pickup':'delivery'} request ${reference}`,_template:'table',Reference:reference,...order})});
+      const response=await fetch('/api/order-notification',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},signal:AbortSignal.timeout(25000),body:JSON.stringify({reference,order})});
       const result=await response.json();
-      if(!response.ok||![true,'true'].includes(result.success)) throw new Error('Notification was not accepted');
+      if(!response.ok||result.success!==true||!result.messageId) throw new Error('Notification was not accepted');
       checkoutState.emailSent.add(reference);
       notificationSent=true;
     }
