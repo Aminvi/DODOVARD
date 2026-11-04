@@ -67,3 +67,12 @@ Product photographs downloaded from retailer product listings. Original packagin
 ## Illustrative sides and extras
 
 French fries, two sausages, cheese slices, and scrambled eggs: created with the built-in image tool as matching food photographs on transparent backgrounds. These illustrate the menu items.
+
+## Schweppes drinks update — 4 November 2026
+
+- Schweppes Mojito 33cl (green): https://www.supermart.ng/products/schweppes-virgin-mojito-can-33-cl
+  Asset: dodovard_food_images/products/schweppes-mojito.png
+- Schweppes Chapman 33cl (red): https://www.supermart.ng/products/schweppes-chapman-can-33-cl
+  Asset: dodovard_food_images/products/schweppes-chapman.png
+
+The built-in image editor removed the white backgrounds; transparent alpha retained. Prompt: remove only background and shadow, preserve the exact can, label, colors, proportions and photographic appearance.
