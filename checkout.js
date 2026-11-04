@@ -125,12 +125,14 @@ async function submitOrder() {
   const whatsappUrl=`https://wa.me/2349131101569?text=${encodeURIComponent(message)}`;
   checkoutState.busy=true;byId('submitOrderButton').disabled=true;
   status.textContent='Sending your order request…';byId('submitOrderButton').textContent='Sending…';
+  let notificationSent=checkoutState.emailSent.has(reference);
   try {
     if(!checkoutState.emailSent.has(reference)) {
       const response=await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(Dodovard.emailRecipient)}`,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},signal:AbortSignal.timeout(15000),body:JSON.stringify({_subject:`Dodovard ${pickup?'pickup':'delivery'} request ${reference}`,_template:'table',Reference:reference,...order})});
       const result=await response.json();
       if(!response.ok||![true,'true'].includes(result.success)) throw new Error('Notification was not accepted');
       checkoutState.emailSent.add(reference);
+      notificationSent=true;
     }
     status.textContent='Your request was sent. Opening WhatsApp…';
   } catch(error) {
@@ -139,7 +141,7 @@ async function submitOrder() {
     checkoutState.busy=false;byId('submitOrderButton').disabled=false;byId('submitOrderButton').textContent='Proceed';
   }
   if(!allowedDeliveryDate(date)) {status.textContent='The ordering window just closed. Please choose another available date or contact Dodovard about your request.';refreshDeliveryDate();return;}
-  alert(delivery.quote?'Thank you! We will confirm your delivery quote before payment.':'Thank you for your purchase');
+  alert(!notificationSent?'The email notification could not be sent. Please tap Send in WhatsApp so Dodovard receives your order request.':delivery.quote?'Thank you! We will confirm your delivery quote before payment. Please tap Send in WhatsApp.':'Thank you! Your order request was emailed. Please tap Send in WhatsApp to confirm it with Dodovard.');
   window.location.assign(whatsappUrl);
 }
 filterDeliveryAreas();setFulfilment();
